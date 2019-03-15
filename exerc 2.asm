@@ -20,9 +20,13 @@
 	add $t2, $t2, $t1
 	lw $t2, ($t2)
 	
-	
 	#Subtrai valores para o registrador $a0
 	sub $a0, $t0, $t2
 	
+	#Configura syscall para imprimir no console lembrando que o valor tem que estar em $a0
 	li $v0, 1
+	syscall
+
+	#Configura syscall para sair do programa
+	li $v0, 10
 	syscall

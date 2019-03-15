@@ -3,6 +3,7 @@
 	G: .word 6
 	H: .word 7
 	B: .word 1,2,3,4,5
+	F: .word 0
 .text 
 	#Carrega numeros para os regitradores
 	lw $t0, G
@@ -17,7 +18,14 @@
 	#Adiciona valores para o registrador $a0
 	add $a0, $t0, $t1
 	add $a0, $a0, $t2
+
+	#Carrega o valor de $a0 para memoria no rotulo F
+	sw $a0, F
 	
+	#Configura syscall para imprimir no console lembrando que o valor tem que estar em $a0
 	li $v0, 1
-	
+	syscall
+
+	#Configura syscall para sair do programa
+	li $v0, 10
 	syscall
